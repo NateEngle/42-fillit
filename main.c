@@ -32,20 +32,26 @@ char *read_file(char *file)
 	tmp[i] = '\0';
 	if (close(fd) == -1)
 		ft_putstr("error\n");
-	return (tmp);
+	return (ft_strdup(tmp));
 }
 
 int main(int ac, char **av)
 {
+	int i;
 	char *tetriminos;
 	char **map;
 
-	tetriminos = read_file(av[1]);
-	if (!check_valid(tetriminos))
+	tetriminos = ft_strsplit(read_file(av[1]), \n\n);
+	while (tetriminos[i])
 	{
-		ft_putstr("error\n");
-		return (0);
+		if (!check_valid(tetriminos[i]))
+		{
+			ft_putstr("error\n");
+			return (0);
+		}
+		i++;
 	}
+
 	map = make_map(tetriminos);
 	
 	

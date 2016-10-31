@@ -45,28 +45,45 @@ char **make_letters(char **tet)
     return (cpy);
 }
 
-int main()
-{
-    int i = 0;
-    char **new;
-    char **cpy;
-    char one[] = ".#..\n.#..\n.##.\n....";
-    char two[] = ".##.\n.##.\n....\n....";
-    char *cpo;
-    char *cpt;
+// int main()
+// {
+//     int i = 0;
+//     char **new;
+//     char **cpy;
+//     char ell[] = ".#..\n.#..\n.##.\n....";
+//     char sq[] = ".##.\n.##.\n....\n....";
+//     char tall[] = "#...\n#...\n#...\n#...";
+//     char zee[] = "....\n..#.\n..##\n...#";
+//     char bell[] = "#...\n###.\n....\n....";
+//     char tri[] = "....\n.#..\n###.\n....";
+//     char *cell;
+//     char *csq;
+//     char *ctall;
+//     char *czee;
+//     char *cbell;
+//     char *ctri;
 
-    cpo = one;
-    cpt = two;
-    char *str[23] = { cpo, cpt };
+//     cell = ell;
+//     csq = sq;
+//     ctall = tall;
+//     czee = zee;
+//     cbell = bell;
+//     ctri = tri;
+//     char *str[23] = { cell, csq, ctall, czee, cbell, ctri };
 
-    cpy = str;
-    printf("%s\n\n", cpy[0]);
-    printf("%s\n\n", cpy[1]);
-    new = make_letters(cpy);
-    while (new[i])
-    {
-        printf("%s\n\n", new[i]);
-        i++;
-    }
-    return (0);
-}
+//     cpy = str;
+//     printf("%s\n\n", cpy[0]);
+//     printf("%s\n\n", cpy[1]);
+// 	printf("%s\n\n", cpy[2]);
+//     printf("%s\n\n", cpy[3]);
+//     printf("%s\n\n", cpy[4]);
+//     printf("%s\n\n", cpy[5]);
+//     new = make_letters(cpy);
+//     while (new[i])
+//     {
+//         printf("%s\n\n", new[i]);
+//         i++;
+//     }
+//     return (0);
+// }
+
