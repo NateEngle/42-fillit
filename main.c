@@ -37,6 +37,24 @@ char *read_file(char *file)
 
 void	ft_error(void)
 {
+<<<<<<< HEAD
+	int i;
+	char *tetriminos;
+	char **map;
+
+	tetriminos = ft_strsplit(read_file(av[1]), \n\n);
+	while (tetriminos[i])
+	{
+		if (!check_valid(tetriminos[i]))
+		{
+			ft_putstr("error\n");
+			return (0);
+		}
+		i++;
+	}
+
+	map = make_map(tetriminos);
+=======
 	write(1, "error\n", 6);
 	exit (0);
 }
@@ -56,6 +74,7 @@ int 	main(int ac, char **av)
 //		return (0);
 //	}
 //	map = make_map(tetriminos);
+>>>>>>> dd4ddf496f0d3e19bc700f8b9946cc81d056333f
 	
 	
 	return (0);
