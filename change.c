@@ -6,7 +6,7 @@
 /*   By: nengle- <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 20:31:43 by nengle-           #+#    #+#             */
-/*   Updated: 2016/10/27 20:31:45 by nengle-          ###   ########.fr       */
+/*   Updated: 2016/10/30 19:12:43 by jcapling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char **make_letters(char **tet)
     }
     return (cpy);
 }
+<<<<<<< HEAD
 
 // int main()
 // {
@@ -87,3 +88,5 @@ char **make_letters(char **tet)
 //     return (0);
 // }
 
+=======
+>>>>>>> dd4ddf496f0d3e19bc700f8b9946cc81d056333f
