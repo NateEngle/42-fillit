@@ -6,7 +6,7 @@
 /*   By: nengle- <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 20:31:43 by nengle-           #+#    #+#             */
-/*   Updated: 2016/10/27 20:31:45 by nengle-          ###   ########.fr       */
+/*   Updated: 2016/10/30 19:12:43 by jcapling         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,4 @@ char **make_letters(char **tet)
         alpha++;
     }
     return (cpy);
-}
-
-int main()
-{
-    int i = 0;
-    char **new;
-    char **cpy;
-    char one[] = ".#..\n.#..\n.##.\n....";
-    char two[] = ".##.\n.##.\n....\n....";
-    char *cpo;
-    char *cpt;
-
-    cpo = one;
-    cpt = two;
-    char *str[23] = { cpo, cpt };
-
-    cpy = str;
-    printf("%s\n\n", cpy[0]);
-    printf("%s\n\n", cpy[1]);
-    new = make_letters(cpy);
-    while (new[i])
-    {
-        printf("%s\n\n", new[i]);
-        i++;
-    }
-    return (0);
 }
