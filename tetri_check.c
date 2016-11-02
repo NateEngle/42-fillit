@@ -53,12 +53,6 @@ int	check_valid(char **tetriminos)
     return (1);
 }
 
-// int compare_shapes(char **tet, char **shapes)
-// {
-// 	int pound;
-// 	int i;
-	
-// }
 int find_like(char **shapes, int holder)
 {
 	int i;
@@ -81,25 +75,22 @@ int confirm_pound(char *tet, int j)
 	return (j - i);
 	
 }
-// int pound_num(char **shapes, int x, int y)
-// {
-// 	int pound;
 
-// 	pound = 4
-// 	if (shapes[x][y] == '#')
-// 	{
-		
-// 	}
-// }
+int pound_num(char **shapes, int x, int y, int pound)
+{
+	if (shapes[x][y] == '#')
+		return ((pound - 1));
+	else
+		return (4);
+}
+
 int type_block(char *tet, char **shapes)
 {
-	int i;
 	int j;
 	int x;
 	int y;
 	int pound;
 
-	i = 0;
 	x = 0;
 	pound = 4;
     j = 0;
@@ -108,20 +99,16 @@ int type_block(char *tet, char **shapes)
 		if (tet[j] == '#')
 		{
 			y = confirm_pound(tet, j);
-			if (shapes[x][y] == '#')
-				pound--;
-			else
+			pound = pound_num(shapes, x, y, pound);
+			if (pound == 4)
 			{
 				x++;
 				j = -1;
 				y = 0;
-				pound = 4;
 			}
 		}
 		j++;
 	}
-	if (tet[j] == '\0' && pound != 0)
-		x++;
 	if (tet[j] == '\0' && shapes[x] == '\0')
 		return (-1);
 	return (find_like(shapes, x));
@@ -136,8 +123,8 @@ int main()
 	char **copy2;
 	char *tetriminos[23] = {"....\n..#.\n..#.\n.##."};
 	
-	char check1[] = "##..\n.#..\n.#..\n....\n";
-	char check2[] = "#..\n.#..\n##..\n....";
+	char check1[] = "#..\n.#..\n##..\n....\n";
+	char check2[] = "##..\n.#..\n.#..\n....\n";
 	change1 = check1;
 	change2 = check2;
 	char *check[23] = { change1, change2};
