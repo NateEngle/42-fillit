@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
+#include <stdio.h>
 
 int	valid_nums(char *map)
 {
@@ -51,79 +52,102 @@ int	check_valid(char **tetriminos)
     }
     return (1);
 }
-int ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-    int             diff;
-    unsigned char   *s12;
-    unsigned char   *s22;
 
-    s12 = (unsigned char *)s1;
-    s22 = (unsigned char *)s2;
-    diff = 0;
-    while (n > 0 && (*s12 || *s22))
-    {
-        diff = *s12 - *s22;
-        if (diff == 0)
-        {
-            s12++;
-            s22++;
-        }
-        else
-            return (diff);
-        n--;
-    }
-    return (diff);
-}
-
-int type_block(char **tetriminos, char **shapes)
+// int compare_shapes(char **tet, char **shapes)
+// {
+// 	int pound;
+// 	int i;
+	
+// }
+int find_like(char **shapes, int holder)
 {
 	int i;
-	int j;
-	int pound;
-	int check;
-	
+
 	i = 0;
-	pound = 4;
-	while (tetriminos[i])
-	{
-    	j = 0;
-    	if (tetriminos[i][j] == '#')
-		{
-			while (check != 0)
-			{
-				shapes++;
-			}
-			tetriminos[i]++;
-		}
-		i++;
-	}
-	i = 0;
-	while (shapes[i] != *shapes)
+	while (shapes[i] != shapes[holder])
 		i++;
 	return (i);
 }
 
-#include <stdio.h>
+int confirm_pound(char *tet, int j)
+{
+	int i;
+
+	i = 0;
+	if (j < 5)
+		return (0);
+	while (tet[i] != '#')
+		i++;
+	return (j - i);
+	
+}
+// int pound_num(char **shapes, int x, int y)
+// {
+// 	int pound;
+
+// 	pound = 4
+// 	if (shapes[x][y] == '#')
+// 	{
+		
+// 	}
+// }
+int type_block(char *tet, char **shapes)
+{
+	int i;
+	int j;
+	int x;
+	int y;
+	int pound;
+
+	i = 0;
+	x = 0;
+	pound = 4;
+    j = 0;
+	while (tet[j] && shapes[x] && pound != 0)
+    {
+		if (tet[j] == '#')
+		{
+			y = confirm_pound(tet, j);
+			if (shapes[x][y] == '#')
+				pound--;
+			else
+			{
+				x++;
+				j = -1;
+				y = 0;
+				pound = 4;
+			}
+		}
+		j++;
+	}
+	if (tet[j] == '\0' && pound != 0)
+		x++;
+	if (tet[j] == '\0' && shapes[x] == '\0')
+		return (-1);
+	return (find_like(shapes, x));
+}
 
 int main()
 {
 	int enu;
-	char *check1;
-	char *check2;
-	char **check;
+	char *change1;
+	char *change2;
 	char **copy1;
 	char **copy2;
-	char **tetriminos;
-
-	tetriminos[0] = "....\n..#.\n..#.\n.##.";
+	char *tetriminos[23] = {"....\n..#.\n..#.\n.##."};
 	
-	check1 = "#...\n#...\n##..\n....";
-	check2 = "##..\n.#..\n.#..\n....";
-	check = { chekc1, check2};
+	char check1[] = "##..\n.#..\n.#..\n....\n";
+	char check2[] = "#..\n.#..\n##..\n....";
+	change1 = check1;
+	change2 = check2;
+	char *check[23] = { change1, change2};
 
 	copy1 = tetriminos;
 	copy2 = check;
-	enu = type_block(copy1, copy2);
+	enu = type_block(copy1[0], copy2);
+	printf("%s\n\n", copy1[0]);
+	printf("%s\n", check1);
+	printf("%s\n", check2);
 	printf("%d\n", enu);
 	return (0);
 }
