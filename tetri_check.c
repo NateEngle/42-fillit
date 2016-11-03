@@ -53,67 +53,6 @@ int	check_valid(char **tetriminos)
     return (1);
 }
 
-int find_like(char **shapes, int holder)
-{
-	int i;
-
-	i = 0;
-	while (shapes[i] != shapes[holder])
-		i++;
-	return (i);
-}
-
-int confirm_pound(char *tet, int j)
-{
-	int i;
-
-	i = 0;
-	if (j < 5)
-		return (0);
-	while (tet[i] != '#')
-		i++;
-	return (j - i);
-	
-}
-
-int pound_num(char **shapes, int x, int y, int pound)
-{
-	if (shapes[x][y] == '#')
-		return ((pound - 1));
-	else
-		return (4);
-}
-
-int type_block(char *tet, char **shapes)
-{
-	int j;
-	int x;
-	int y;
-	int pound;
-
-	x = 0;
-	pound = 4;
-    j = 0;
-	while (tet[j] && shapes[x] && pound != 0)
-    {
-		if (tet[j] == '#')
-		{
-			y = confirm_pound(tet, j);
-			pound = pound_num(shapes, x, y, pound);
-			if (pound == 4)
-			{
-				x++;
-				j = -1;
-				y = 0;
-			}
-		}
-		j++;
-	}
-	if (tet[j] == '\0' && shapes[x] == '\0')
-		return (-1);
-	return (find_like(shapes, x));
-}
-
 int main()
 {
 	int enu;
@@ -121,21 +60,38 @@ int main()
 	char *change2;
 	char **copy1;
 	char **copy2;
-	char *tetriminos[23] = {"....\n..#.\n..#.\n.##."};
+	char *tetriminos[23] = {"....\n....\n..#.\n.###"};
 	
 	char check1[] = "#..\n.#..\n##..\n....\n";
 	char check2[] = "##..\n.#..\n.#..\n....\n";
 	change1 = check1;
 	change2 = check2;
-	char *check[23] = { change1, change2};
+	char *check[23] = { "#...\n#...\n##..\n....",
+"##..\n.#..\n.#..\n....",
+"#.\n###.\n....\n....",
+"###.\n#...\n....\n....",
+"##..\n#...\n#...\n....",
+"###.\n...#\n....\n....",
+"#..\n.#..\n##..\n....",
+"#...\n###.\n....\n....",
+"##..\n##..\n....\n....",
+"#...\n#...\n#...\n#...",
+"####\n....\n....\n....",
+"##..\n.##.\n....\n....",
+"#..\n##..\n#...\n....",
+"##.\n##..\n....\n....",
+"#...\n##..\n.#..\n....",
+"#..\n###.\n....\n....",
+"#...\n##..\n#...\n....",
+"###.\n.#..\n....\n....",
+"#..\n##..\n.#..\n...."};
 
 	copy1 = tetriminos;
 	copy2 = check;
 	enu = type_block(copy1[0], copy2);
 	printf("%s\n\n", copy1[0]);
-	printf("%s\n", check1);
-	printf("%s\n", check2);
 	printf("%d\n", enu);
+	printf("%s\n", check[enu]);
 	return (0);
 }
 
