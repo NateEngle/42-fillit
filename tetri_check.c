@@ -53,47 +53,59 @@ int	check_valid(char **tetriminos)
     return (1);
 }
 
-int main()
+char **split_input(char *map)
 {
-	int enu;
-	char *change1;
-	char *change2;
-	char **copy1;
-	char **copy2;
-	char *tetriminos[23] = {"....\n....\n..#.\n.###"};
-	
-	char check1[] = "#..\n.#..\n##..\n....\n";
-	char check2[] = "##..\n.#..\n.#..\n....\n";
-	change1 = check1;
-	change2 = check2;
-	char *check[23] = { "#...\n#...\n##..\n....",
-"##..\n.#..\n.#..\n....",
-"#.\n###.\n....\n....",
-"###.\n#...\n....\n....",
-"##..\n#...\n#...\n....",
-"###.\n...#\n....\n....",
-"#..\n.#..\n##..\n....",
-"#...\n###.\n....\n....",
-"##..\n##..\n....\n....",
-"#...\n#...\n#...\n#...",
-"####\n....\n....\n....",
-"##..\n.##.\n....\n....",
-"#..\n##..\n#...\n....",
-"##.\n##..\n....\n....",
-"#...\n##..\n.#..\n....",
-"#..\n###.\n....\n....",
-"#...\n##..\n#...\n....",
-"###.\n.#..\n....\n....",
-"#..\n##..\n.#..\n...."};
+	char *holder = NULL;
+	char **output;
 
-	copy1 = tetriminos;
-	copy2 = check;
-	enu = type_block(copy1[0], copy2);
-	printf("%s\n\n", copy1[0]);
-	printf("%d\n", enu);
-	printf("%s\n", check[enu]);
-	return (0);
+	holder = map;
+	output = ft_strsplit(holder, '\n');
+
+	
+	return (output);
 }
+
+// int main()
+// {
+// 	int enu;
+// 	char *change1;
+// 	char *change2;
+// 	char **copy1;
+// 	char **copy2;
+// 	char *tetriminos[23] = {"....\n....\n..#.\n.###"};
+	
+// 	char check1[] = "#..\n.#..\n##..\n....\n";
+// 	char check2[] = "##..\n.#..\n.#..\n....\n";
+// 	change1 = check1;
+// 	change2 = check2;
+// 	char *check[23] = { "#...\n#...\n##..\n....",
+// "##..\n.#..\n.#..\n....",
+// "#.\n###.\n....\n....",
+// "###.\n#...\n....\n....",
+// "##..\n#...\n#...\n....",
+// "###.\n...#\n....\n....",
+// "#..\n.#..\n##..\n....",
+// "#...\n###.\n....\n....",
+// "##..\n##..\n....\n....",
+// "#...\n#...\n#...\n#...",
+// "####\n....\n....\n....",
+// "##..\n.##.\n....\n....",
+// "#..\n##..\n#...\n....",
+// "##.\n##..\n....\n....",
+// "#...\n##..\n.#..\n....",
+// "#..\n###.\n....\n....",
+// "#...\n##..\n#...\n....",
+// "###.\n.#..\n....\n....",
+// "#..\n##..\n.#..\n...."};
+
+// 	copy1 = tetriminos;
+// 	copy2 = check;
+// 	enu = type_block(copy1[0], copy2);
+// 	printf("%s\n\n", copy1[0]);
+// 	printf("%d\n", enu);
+// 	printf("%s\n", check[enu]);
+// 	return (0);
+// }
 
 
 // int main()
