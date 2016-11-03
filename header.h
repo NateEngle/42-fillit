@@ -25,10 +25,11 @@ char	**make_letters(char **tet);
 char	*ft_change_pound(char *tet, char alpha);
 int		valid_nums(char *map);
 char	*read_file(char *file);
-int		check_valid(char **str);
-int		find_like(char **shapes, int holder);
-int		confirm_pound(char *tet, int j);
-int		pound_num(char **shapes, int x, int y, int pound);
-int		type_block(char *tet, char **shapes);
+int	check_valid(char **str);
+int find_like(char **shapes, int holder);
+int confirm_pound(char *tet, int j);
+int pound_num(char **shapes, int x, int y, int pound);
+int type_block(char *tet, char **shapes);
+char **split_input(char *map);
 
 #endif

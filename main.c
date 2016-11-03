@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
+#include <stdio.h>
 
 char *read_file(char *file)
 {
@@ -35,37 +36,42 @@ char *read_file(char *file)
 	return (ft_strdup(tmp));
 }
 
-int	ft_error(char **av)
+void	ft_error()
 {
-	int i;
-	char **tetriminos;
+	// int i;
+	// char **tetriminos;
 
-
-	tetriminos = ft_strsplit(read_file(av[1]), \n\n);
-	while (tetriminos[i])
-	{
-		if (!check_valid(tetriminos[i]))
-		{
+	// while (tetriminos[i])
+	// {
+	// 	if (!check_valid(&tetriminos[i]))
+	// 	{
 			ft_putstr("error\n");
-			return (0);
-		}
-		i++;
-	}
-	return (1);
+			exit (0);
+	// 	}
+	// 	i++;
+	// }
+	// return (1);
 }
 
 int 	main(int ac, char **av)
 {
-	// char *tetriminos;
+	char *reader;
+	char **map;
+	int i;
 
-	(void)ac;
-	(void)av;
-
-	if (!ft_error(av))
-		return (0);
-
-
-	
+	i =0;
+	if (ac != 2)
+		ft_error();
+	reader = read_file(av[1]);
+	//printf("%s\n", reader);
+	map = split_input(reader);
+	//while ((map))
+	//{
+		printf("%s\n", map[0]);
+		//free(*(map + i));
+		//i++;
+	//}
+	//free(map);
 	
 	return (0);
 }
