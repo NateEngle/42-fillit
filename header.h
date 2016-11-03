@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-// # include "./libft/libft.h"
+# include "./libft/libft.h"
 
 int valid_nums(char *map);
 char **make_letters(char **tet);
@@ -30,6 +30,6 @@ int find_like(char **shapes, int holder);
 int confirm_pound(char *tet, int j);
 int pound_num(char **shapes, int x, int y, int pound);
 int type_block(char *tet, char **shapes);
-
+char **split_input(char *map);
 
 #endif
