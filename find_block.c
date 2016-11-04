@@ -43,6 +43,10 @@ int pound_num(char **shapes, int x, int y, int pound)
 		return (4);
 }
 
+// int searching_shapes(char *tet, char *shape)
+// {
+	
+// }
 int type_block(char *tet, char **shapes)
 {
 	int j;

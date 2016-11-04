@@ -187,3 +187,17 @@ int 	main(int ac, char **av)
 	return (0);
 }
 
+	// while (map[i])
+	// {
+		
+	// }
+	// printf("%s\n", map[0]);
+	// printf("%s\n", map[1]);
+	// printf("%s\n", map[2]);
+	// // while (map[i])
+	// // {
+	// // 	printf("%s\n\n", map[i]);
+	// // 	free(*(map + i));
+	// // 	i++;
+	// // }
+	// free(map);
