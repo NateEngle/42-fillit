@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-int find_like(char **shapes, int holder)
+static int find_like(char **shapes, int holder)
 {
 	int i;
 
@@ -22,7 +22,7 @@ int find_like(char **shapes, int holder)
 	return (i);
 }
 
-int confirm_pound(char *tet, int j)
+static int confirm_pound(char *tet, int j)
 {
 	int i;
 
@@ -35,7 +35,7 @@ int confirm_pound(char *tet, int j)
 	
 }
 
-int pound_num(char **shapes, int x, int y, int pound)
+static int pound_num(char **shapes, int x, int y, int pound)
 {
 	if (shapes[x][y] == '#')
 		return ((pound - 1));
@@ -68,7 +68,7 @@ int type_block(char *tet, char **shapes)
 		}
 		j++;
 	}
-	if (tet[j] == '\0' || x == 19)
+	if (tet[j] == '\0' && x == 19)
 		return (-1);
 	return (find_like(shapes, x));
 }

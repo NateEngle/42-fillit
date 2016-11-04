@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-int	valid_nums(char *map)
+static int	valid_nums(char *map)
 {
 	int i;
 	int pound;
