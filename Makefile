@@ -6,7 +6,7 @@ CC_FLAGS = -Wall -Werror -Wextra
 SRC_PATH = ./
 INC_PATH = ./
 OBJ_PATH = ./obj/
-LBFT_PATH = ~/libft/
+LBFT_PATH = ./libft/
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
@@ -17,7 +17,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = header.h
 
-SRC_NAME = main.c change.c tetri_check.c
+SRC_NAME = main.c change.c tetri_check.c  
 
 all: $(NAME)
 
