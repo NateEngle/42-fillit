@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 int	valid_nums(char *map)
 {
@@ -53,18 +52,7 @@ int	check_valid(char **tetriminos)
     return (1);
 }
 
-char **split_input(char *map)
-{
-	char *holder = NULL;
-	char **output;
-
-	holder = map;
-	output = ft_strsplit(holder, '\n');
-
-	
-	return (output);
-}
-
+// #include <stdio.h>
 // int main()
 // {
 // 	int enu;
@@ -72,31 +60,31 @@ char **split_input(char *map)
 // 	char *change2;
 // 	char **copy1;
 // 	char **copy2;
-// 	char *tetriminos[23] = {"....\n....\n..#.\n.###"};
+// 	char *tetriminos[23] = {"#...\n.#..\n..#.\n...#"};
 	
 // 	char check1[] = "#..\n.#..\n##..\n....\n";
 // 	char check2[] = "##..\n.#..\n.#..\n....\n";
 // 	change1 = check1;
 // 	change2 = check2;
 // 	char *check[23] = { "#...\n#...\n##..\n....",
-// "##..\n.#..\n.#..\n....",
-// "#.\n###.\n....\n....",
-// "###.\n#...\n....\n....",
-// "##..\n#...\n#...\n....",
-// "###.\n...#\n....\n....",
-// "#..\n.#..\n##..\n....",
-// "#...\n###.\n....\n....",
-// "##..\n##..\n....\n....",
-// "#...\n#...\n#...\n#...",
-// "####\n....\n....\n....",
-// "##..\n.##.\n....\n....",
-// "#..\n##..\n#...\n....",
-// "##.\n##..\n....\n....",
-// "#...\n##..\n.#..\n....",
-// "#..\n###.\n....\n....",
-// "#...\n##..\n#...\n....",
-// "###.\n.#..\n....\n....",
-// "#..\n##..\n.#..\n...."};
+// 	"##..\n.#..\n.#..\n....",
+// 	"#.\n###.\n....\n....",
+// 	"###.\n#...\n....\n....",
+// 	"##..\n#...\n#...\n....",
+// 	"###.\n...#\n....\n....",
+// 	"#..\n.#..\n##..\n....",
+// 	"#...\n###.\n....\n....",
+// 	"##..\n##..\n....\n....",
+// 	"#...\n#...\n#...\n#...",
+// 	"####\n....\n....\n....",
+// 	"##..\n.##.\n....\n....",
+// 	"#..\n##..\n#...\n....",
+// 	"##.\n##..\n....\n....",
+// 	"#...\n##..\n.#..\n....",
+// 	"#..\n###.\n....\n....",
+// 	"#...\n##..\n#...\n....",
+// 	"###.\n.#..\n....\n....",
+// 	"#..\n##..\n.#..\n...."};
 
 // 	copy1 = tetriminos;
 // 	copy2 = check;
@@ -105,53 +93,4 @@ char **split_input(char *map)
 // 	printf("%d\n", enu);
 // 	printf("%s\n", check[enu]);
 // 	return (0);
-// }
-
-
-// int main()
-// {
-//     int i = 0;
-//     char **new;
-//     char **cpy;
-//     char ell[] = ".#..\n.#..\n.##.\n....";
-//     char sq[] = ".##.\n.##.\n....\n....";
-//     char tall[] = "#...\n#...\n#...\n#...";
-//     char zee[] = "....\n..#.\n..##\n...#";
-//     char bell[] = "#...\n###.\n....\n....";
-//     char tri[] = "....\n.#..\n###.\n....";
-//     char *cell;
-//     char *csq;
-//     char *ctall;
-//     char *czee;
-//     char *cbell;
-//     char *ctri;
-
-//     cell = ell;
-//     csq = sq;
-//     ctall = tall;
-//     czee = zee;
-//     cbell = bell;
-//     ctri = tri;
-//     char *str[23] = { cell, csq, ctall, czee, cbell, ctri };
-
-//     cpy = str;
-//     // printf("%s\n\n", cpy[0]);
-//     // printf("%s\n\n", cpy[1]);
-// 	// printf("%s\n\n", cpy[2]);
-//     // printf("%s\n\n", cpy[3]);
-//     // printf("%s\n\n", cpy[4]);
-//     // printf("%s\n\n", cpy[5]);
-// 	if (!check_valid(cpy))
-// 	{
-// 		printf("error\n");
-// 		return (0);
-// 	}
-//     new = make_letters(cpy);
-// 	i = 0;
-//     while (new[i])
-//     {
-//         printf("%s\n\n", new[i]);
-//         i++;
-//     }
-//     return (0);
 // }
