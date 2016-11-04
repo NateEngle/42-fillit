@@ -12,7 +12,6 @@
 
 #include "header.h"
 
-
 int find_like(char **shapes, int holder)
 {
 	int i;
@@ -64,13 +63,12 @@ int type_block(char *tet, char **shapes)
 			{
 				x++;
 				j = -1;
-				y = 0;
+				y = 0; 
 			}
 		}
 		j++;
 	}
-	if (tet[j] == '\0' && shapes[x] == '\0')
+	if (tet[j] == '\0' || x == 19)
 		return (-1);
 	return (find_like(shapes, x));
 }
-
