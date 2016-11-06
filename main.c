@@ -88,15 +88,12 @@ int 	main(int ac, char **av)
 	if (type_block(reader, check) == -1)
 		ft_error();
 	map = split_input(reader);
-	printf("%s\n", map[0]);
-	printf("%s\n", map[1]);
-	printf("%s\n", map[2]);
-	// while (map[i])
-	// {
-	// 	printf("%s\n\n", map[i]);
-	// 	free(*(map + i));
-	// 	i++;
-	// }
+	while (map[i])
+	{
+		printf("%s\n\n", map[i]);
+		free(*(map + i));
+		i++;
+	}
 	free(map);
 	
 	return (0);

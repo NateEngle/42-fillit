@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "./libft/libft.h"
+# include "../../libft/libft.h"
 
 //int		valid_nums(char *map);
 char	**make_letters(char **tet);

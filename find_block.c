@@ -72,7 +72,7 @@ int type_block(char *tet, char **shapes)
 		}
 		j++;
 	}
-	if (tet[j] == '\0' && x == 19)
+	if (x == 19)
 		return (-1);
 	return (find_like(shapes, x));
 }
