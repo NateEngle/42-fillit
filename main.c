@@ -60,6 +60,7 @@ int 	main(int ac, char **av)
 	char *reader;
 	char **map;
 	int i;
+	char **holder;
 	char *check[23] = { "#...\n#...\n##..\n....",
 "##..\n.#..\n.#..\n....",
 "#.\n###.\n....\n....",
@@ -84,16 +85,34 @@ int 	main(int ac, char **av)
 	if (ac != 2)
 		ft_error();
 	reader = read_file(av[1]);
-	printf("%s\n", reader);
+	//printf("%s\n", reader);
 	if (type_block(reader, check) == -1)
 		ft_error();
 	map = split_input(reader);
+<<<<<<< HEAD
 	while (map[i])
 	{
 		printf("%s\n\n", map[i]);
 		free(*(map + i));
 		i++;
 	}
+=======
+	map = grab_tetri(map);
+	//map = make_letters(map);
+	while (map[i])
+	{
+	 	ft_putstr(map[i]);
+	 	i++;
+	}
+	//max_num(map);
+	i = 0;
+	holder = fill_blank(map, max_num(map));
+	//  while (holder[i])
+	// {
+	//   	ft_putstr(holder[i]);
+	//   	i++;
+	// }
+>>>>>>> dc5e01c1430c7c1f37c69f9b67b077e9b5f76efb
 	free(map);
 	
 	return (0);

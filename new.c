@@ -47,13 +47,27 @@ char **split_input(char *map)
 		return (0);
 	while (count > 0)
 	{
-		output[itero] = ft_strsub(holder, i, 19);
+		output[itero] = ft_strsub(holder, i, 20);
 		itero++;
 		count--;
 		i = i + 21;
 	}
 	output[itero] = NULL;
 	return (output);
+}
+
+int 		max_num(char **map)
+{
+	int 	i;
+	int 	max_num;
+
+	i = 0;
+	max_num = 2;
+	while (map[i] != '\0')
+		i++;
+	while (max_num * max_num < i * 4)
+		max_num++;
+	return (max_num);
 }
 
 // int main()

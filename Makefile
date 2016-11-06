@@ -17,8 +17,12 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = header.h
 
+<<<<<<< HEAD
 SRC_NAME = main.c
 SRC_NAME = main.c change.c tetri_check.c new.c find_block.c 
+=======
+SRC_NAME = main.c change.c tetri_check.c new.c find_block.c fill_map.c
+>>>>>>> dc5e01c1430c7c1f37c69f9b67b077e9b5f76efb
 
 all: $(NAME)
 
