@@ -30,5 +30,8 @@ int		check_valid(char **str);
 //int		pound_num(char **shapes, int x, int y, int pound);
 int		type_block(char *tet, char **shapes);
 char	**split_input(char *map);
+int 		max_num(char **map);
+char        **fill_blank(char **str, int max_num);
+char        **grab_tetri(char **str);
 
 #endif
