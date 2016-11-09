@@ -13,6 +13,109 @@
 #include "header.h"
 #include <stdio.h>
 
+int find_like(char **shapes, int holder)
+{
+	int i;
+
+	i = 0;
+	while (shapes[i] != shapes[holder])
+		i++;
+	return (i);
+}
+
+int confirm_pound(char *tet, int j)
+{
+	int i;
+
+	i = 0;
+	if (j < 5)
+		return (0);
+	while (tet[i] != '#')
+		i++;
+	return (j - i);
+}
+
+int pound_num(char **shapes, int x, int y, int pound)
+{
+	if (shapes[x][y] == '#')
+		return ((pound - 1));
+	else
+		return (4);
+}
+
+int type_block(char *tet, char **shapes)
+{
+	int j;
+	int x;
+	int y;
+	int pound;
+
+	x = 0;
+	pound = 4;
+    j = 0;
+	while (tet[j] && shapes[x] && pound != 0)
+    {
+		if (tet[j] == '#')
+		{
+			y = confirm_pound(tet, j);
+			pound = pound_num(shapes, x, y, pound);
+			if (pound == 4)
+			{
+				x++;
+				j = -1;
+				y = 0; 
+			}
+		}
+		j++;
+	}
+	if (tet[j] == '\0' || x == 19)
+		return (-1);
+	return (find_like(shapes, x));
+}
+
+int		block_num(char *holder)
+{
+	int x;
+	int count;
+
+	x = 0;
+	count = 0;
+	while (holder[x])
+	{
+		if((holder[x] == '\n' && holder[x + 1] == '\n'))
+			count++;
+		x++;
+	}
+	if (holder[x] == '\0')
+		count++;
+	return (count);
+}
+char **split_input(char *map)
+{
+	char *holder;
+	char **output;
+	int count;
+	int i;
+	int itero;
+
+	i = 0;
+	count = 0;
+	itero = 0;
+	holder = map;
+	count = block_num(holder);
+	if (!(output = (char **)malloc(sizeof(char *) * (count + 1))))
+		return (0);
+	while (count > 0)
+	{
+		output[itero] = ft_strsub(holder, i, 19);
+		itero++;
+		count--;
+		i = i + 21;
+	}
+	output[itero] = NULL;
+	return (output);
+}
+
 char *read_file(char *file)
 {
 	int ret;
@@ -53,7 +156,29 @@ void	ft_error()
 	// return (1);
 }
 
+// int *choose_enums(char **map)
+// {
+// 	int i;
+// 	int j;
+// 	int *enums;
 
+// 	i = 0;
+// 	j = 0;
+// 	while (map[i] != '\0')
+// 		i++;
+// 	if (!(enums = (int *)malloc(sizeof(int) * (i + 1))))
+// 		return (0);
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		enums[j] = type_block(map[i], check);
+// 		j++;
+// 		i++;
+// 	}
+// 	enums[j] = '\0';
+// 	free (map);
+// 	return (enums);
+// }
 
 int 	main(int ac, char **av)
 {
@@ -83,21 +208,19 @@ int 	main(int ac, char **av)
 
 	i =0;
 	if (ac != 2)
-		ft_error();
+		ft_putstr("usage: ./fillit input_file");
 	reader = read_file(av[1]);
 	//printf("%s\n", reader);
 	if (type_block(reader, check) == -1)
 		ft_error();
 	map = split_input(reader);
-<<<<<<< HEAD
-	while (map[i])
-	{
-		printf("%s\n\n", map[i]);
-		free(*(map + i));
-		i++;
-	}
-=======
-	map = grab_tetri(map);
+	// while (map[i])
+	// {
+	// 	printf("%s\n\n", map[i]);
+	// 	free(*(map + i));
+	// 	i++;
+	// }
+	// map = grab_tetri(map);
 	//map = make_letters(map);
 	while (map[i])
 	{
@@ -112,7 +235,6 @@ int 	main(int ac, char **av)
 	//   	ft_putstr(holder[i]);
 	//   	i++;
 	// }
->>>>>>> dc5e01c1430c7c1f37c69f9b67b077e9b5f76efb
 	free(map);
 	
 	return (0);
@@ -132,3 +254,4 @@ int 	main(int ac, char **av)
 	// // 	i++;
 	// // }
 	// free(map);
+

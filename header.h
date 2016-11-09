@@ -33,5 +33,6 @@ char	**split_input(char *map);
 int 		max_num(char **map);
 char        **fill_blank(char **str, int max_num);
 char        **grab_tetri(char **str);
+char        *printables(int enums);
 
 #endif

@@ -27,8 +27,6 @@ static int confirm_pound(char *tet, int j)
 	int i;
 
 	i = 0;
-	if (j < 5)
-		return (0);
 	while (tet[i] != '#')
 		i++;
 	return (j - i);
@@ -43,10 +41,6 @@ static int pound_num(char **shapes, int x, int y, int pound)
 		return (4);
 }
 
-// int searching_shapes(char *tet, char *shape)
-// {
-	
-// }
 int type_block(char *tet, char **shapes)
 {
 	int j;
@@ -76,3 +70,42 @@ int type_block(char *tet, char **shapes)
 		return (-1);
 	return (find_like(shapes, x));
 }
+
+
+// #include <stdio.h>
+// int main()
+// {
+// 	int enu;
+
+// 	char **copy1;
+// 	char **copy2;
+// 	char *tetriminos[2] = {"#...\n.#..\n..#.\n...#"};
+	
+// 	char *check[23] = { "#...\n#...\n##..\n....",
+// 	"##..\n.#..\n.#..\n....",
+// 	"#.\n###.\n....\n....",
+// 	"###.\n#...\n....\n....",
+// 	"##..\n#...\n#...\n....",
+// 	"###.\n...#\n....\n....",
+// 	"#..\n.#..\n##..\n....",
+// 	"#...\n###.\n....\n....",
+// 	"##..\n##..\n....\n....",
+// 	"#...\n#...\n#...\n#...",
+// 	"####\n....\n....\n....",
+// 	"##..\n.##.\n....\n....",
+// 	"#..\n##..\n#...\n....",
+// 	"##.\n##..\n....\n....",
+// 	"#...\n##..\n.#..\n....",
+// 	"#..\n###.\n....\n....",
+// 	"#...\n##..\n#...\n....",
+// 	"###.\n.#..\n....\n....",
+// 	"#..\n##..\n.#..\n...."};
+
+// 	copy1 = tetriminos;
+// 	copy2 = check;
+// 	enu = type_block(copy1[0], copy2);
+// 	printf("%s\n\n", copy1[0]);
+// 	printf("%d\n", enu);
+// 	printf("%s\n", check[enu]);
+// 	return (0);
+// }
