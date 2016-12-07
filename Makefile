@@ -3,8 +3,8 @@ NAME = fillit
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
 
-SRC_PATH = ./
-INC_PATH = ./
+SRC_PATH = ./srcs/
+INC_PATH = ./includes/
 OBJ_PATH = ./obj/
 LBFT_PATH = ./libft/
 
@@ -15,9 +15,9 @@ DELETE = $(OBJ)
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-INC_NAME = header.h
+INC_NAME = header.hh
 
-SRC_NAME = main.c change.c tetri_check.c new.c find_block.c fill_map.c
+SRC_NAME = main.c block.c file_reader.c map_fcts.c solve_file.c get_piece.c
 
 all: $(NAME)
 
