@@ -3,8 +3,8 @@ NAME = fillit
 CC = gcc
 CC_FLAGS = -Wall -Werror -Wextra
 
-SRC_PATH = ./
-INC_PATH = ./
+SRC_PATH = ./srcs/
+INC_PATH = ./includes/
 OBJ_PATH = ./obj/
 LBFT_PATH = ./libft/
 
