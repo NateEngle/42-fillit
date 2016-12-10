@@ -30,19 +30,17 @@ int		block_num(char *holder)
 		count++;
 	return (count);
 }
-char **split_input(char *map)
+
+char **split_input(char *map, int count)
 {
 	char *holder;
 	char **output;
-	int count;
 	int i;
 	int itero;
 
 	i = 0;
-	count = 0;
 	itero = 0;
 	holder = map;
-	count = block_num(holder);
 	if (!(output = (char **)malloc(sizeof(char *) * (count + 1))))
 		return (0);
 	while (count > 0)
@@ -56,18 +54,16 @@ char **split_input(char *map)
 	return (output);
 }
 
-int 		max_num(char **map)
+int 		max_num(char *holder)
 {
-	int 	i;
-	int 	max_num;
+	int		size;
+	int		i;
 
-	i = 0;
-	max_num = 2;
-	while (map[i] != '\0')
+	i = 2;
+	size = (block_num(holder) * 4);
+	while (i * i < size)
 		i++;
-	while (max_num * max_num < i * 4)
-		max_num++;
-	return (max_num);
+	return (i);
 }
 
 // int main()

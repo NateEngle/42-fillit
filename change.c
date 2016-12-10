@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-char *ft_change_pound(char *tet, char alpha)
+char *ft_change_char(char *tet, char alpha)
 {
     int  i;
 
@@ -28,16 +28,16 @@ char *ft_change_pound(char *tet, char alpha)
 
 char **make_letters(char **tet)
 {
-    char alpha;
+    char    alpha;
     char    **cpy;
-    int i;
+    int     i;
 
     i = 0;
-    alpha = 65;
+    alpha = 'A';
     cpy = tet;
     while (cpy[i])
     {
-        cpy[i] = ft_change_pound(cpy[i], alpha);
+        cpy[i] = ft_change_char(cpy[i], alpha);
         i++;
         alpha++;
     }

@@ -12,50 +12,22 @@
 
 #include "header.h"
 
-char *printables(int enums)
+int		place_tet(char **piece, char **map, int x, int y)
 {
-    char *prints[20] = {"#...\n#...\n##",
-"##..\n.#..\n.#",
-"#.\n###",
-"###.\n#",
-"##..\n#...\n#",
-"###.\n..#",
-"#..\n.#..\n##",
-"#...\n###",
-"##..\n##",
-"#...\n#...\n#...\n#",
-"####",
-"##..\n.##",
-"#..\n##..\n#",
-"##.\n##",
-"#...\n##..\n.#",
-"#..\n###",
-"#...\n##..\n#",
-"###.\n.#",
-"#..\n##..\n.#"};
-    return (prints[enums]); 
+	int i;
+	int j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (piece[j][i] == '#' && map[y + j][x + i] != '.')
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
-
-// char **putblock(char **map, char **block)
-// {
-//     int i;
-//     int j;
-
-//     int i = 0
-//     int j = 0;
-//     while (block)
-//     (
-//     	while (*block)
-// 		{
-// 			if (ft_isupper(**block) || **block == '\n')
-// 				ft_putchar(**block);
-// 			if (**block == ".")
-// 				ft_putchar(' ');
-// 			**block++;
-// 		}
-// 		*block++;
-//     )
-// 	while (map)
-
-// }
-

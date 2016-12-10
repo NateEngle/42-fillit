@@ -29,10 +29,14 @@ int		check_valid(char **str);
 //int		confirm_pound(char *tet, int j);
 //int		pound_num(char **shapes, int x, int y, int pound);
 int		type_block(char *tet, char **shapes);
-char	**split_input(char *map);
-int 		max_num(char **map);
+char	**split_input(char *map, int count);
+int 		max_num(char *map);
 char        **fill_blank(char **str, int max_num);
 char        **grab_tetri(char **str);
 char        *printables(int enums);
+char **get_dblchar(char *split);
+int **coordinates(int enums);
+int		block_num(char *holder);
+char ***group_tets(char **tet, int count);
 
 #endif

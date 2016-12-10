@@ -6,115 +6,12 @@
 /*   By: nengle- <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 23:02:34 by nengle-           #+#    #+#             */
-/*   Updated: 2016/10/30 19:09:34 by jcapling         ###   ########.fr       */
+/*   Updated: 2016/11/21 16:21:44 by nengle-          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include <stdio.h>
-
-int find_like(char **shapes, int holder)
-{
-	int i;
-
-	i = 0;
-	while (shapes[i] != shapes[holder])
-		i++;
-	return (i);
-}
-
-int confirm_pound(char *tet, int j)
-{
-	int i;
-
-	i = 0;
-	if (j < 5)
-		return (0);
-	while (tet[i] != '#')
-		i++;
-	return (j - i);
-}
-
-int pound_num(char **shapes, int x, int y, int pound)
-{
-	if (shapes[x][y] == '#')
-		return ((pound - 1));
-	else
-		return (4);
-}
-
-int type_block(char *tet, char **shapes)
-{
-	int j;
-	int x;
-	int y;
-	int pound;
-
-	x = 0;
-	pound = 4;
-    j = 0;
-	while (tet[j] && shapes[x] && pound != 0)
-    {
-		if (tet[j] == '#')
-		{
-			y = confirm_pound(tet, j);
-			pound = pound_num(shapes, x, y, pound);
-			if (pound == 4)
-			{
-				x++;
-				j = -1;
-				y = 0; 
-			}
-		}
-		j++;
-	}
-	if (tet[j] == '\0' || x == 19)
-		return (-1);
-	return (find_like(shapes, x));
-}
-
-int		block_num(char *holder)
-{
-	int x;
-	int count;
-
-	x = 0;
-	count = 0;
-	while (holder[x])
-	{
-		if((holder[x] == '\n' && holder[x + 1] == '\n'))
-			count++;
-		x++;
-	}
-	if (holder[x] == '\0')
-		count++;
-	return (count);
-}
-char **split_input(char *map)
-{
-	char *holder;
-	char **output;
-	int count;
-	int i;
-	int itero;
-
-	i = 0;
-	count = 0;
-	itero = 0;
-	holder = map;
-	count = block_num(holder);
-	if (!(output = (char **)malloc(sizeof(char *) * (count + 1))))
-		return (0);
-	while (count > 0)
-	{
-		output[itero] = ft_strsub(holder, i, 19);
-		itero++;
-		count--;
-		i = i + 21;
-	}
-	output[itero] = NULL;
-	return (output);
-}
 
 char *read_file(char *file)
 {
@@ -156,102 +53,121 @@ void	ft_error()
 	// return (1);
 }
 
-// int *choose_enums(char **map)
-// {
-// 	int i;
-// 	int j;
-// 	int *enums;
-
-// 	i = 0;
-// 	j = 0;
-// 	while (map[i] != '\0')
-// 		i++;
-// 	if (!(enums = (int *)malloc(sizeof(int) * (i + 1))))
-// 		return (0);
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		enums[j] = type_block(map[i], check);
-// 		j++;
-// 		i++;
-// 	}
-// 	enums[j] = '\0';
-// 	free (map);
-// 	return (enums);
-// }
-
 int 	main(int ac, char **av)
 {
 	char *reader;
-	char **map;
+	char **places;
 	int i;
-	char **holder;
-	char *check[23] = { "#...\n#...\n##..\n....",
-"##..\n.#..\n.#..\n....",
-"#.\n###.\n....\n....",
-"###.\n#...\n....\n....",
-"##..\n#...\n#...\n....",
-"###.\n...#\n....\n....",
-"#..\n.#..\n##..\n....",
-"#...\n###.\n....\n....",
-"##..\n##..\n....\n....",
-"#...\n#...\n#...\n#...",
-"####\n....\n....\n....",
-"##..\n.##.\n....\n....",
-"#..\n##..\n#...\n....",
-"##.\n##..\n....\n....",
-"#...\n##..\n.#..\n....",
-"#..\n###.\n....\n....",
-"#...\n##..\n#...\n....",
-"###.\n.#..\n....\n....",
-"#..\n##..\n.#..\n...."};
+	int count;
+	// char **holder = NULL;
 
-	i =0;
+
+	i =  0;
+	// int val;
 	if (ac != 2)
 		ft_putstr("usage: ./fillit input_file");
 	reader = read_file(av[1]);
-	//printf("%s\n", reader);
-	if (type_block(reader, check) == -1)
-		ft_error();
-	map = split_input(reader);
-	// while (map[i])
+	// if ((val = type_block(reader, check)) == -1)
+	// 	ft_error();
+	// printf("%d\n", val);
+
+	// if (get_coords(reader) == -1)
+	// 	ft_error();
+	count = block_num(reader);
+	places = split_input(reader, count);
+	ft_memdel((void **)&reader);
+	char ***y = group_tets(places, count);
+	int j = 0;
+	int k;
+	while (y[j])
+	{
+		k = 0;
+		while (y[j][k])
+		{
+			ft_putstr(y[j][k]);
+			ft_putchar('\n');
+			k++;
+		}
+		j++;
+	}
+	// if (group_tets(places, count) == NULL)
+	// 	ft_error();
+	// size = max_num(holder);
+	
+	// while (places[i])
 	// {
-	// 	printf("%s\n\n", map[i]);
-	// 	free(*(map + i));
+	// 	printf("%s\n", places[i]);
 	// 	i++;
 	// }
-	// map = grab_tetri(map);
-	//map = make_letters(map);
-	while (map[i])
-	{
-	 	ft_putstr(map[i]);
-	 	i++;
-	}
-	//max_num(map);
-	i = 0;
-	holder = fill_blank(map, max_num(map));
-	//  while (holder[i])
+
+	// map = make_letters(map);
+
+
+	// while (holder[i])
 	// {
 	//   	ft_putstr(holder[i]);
 	//   	i++;
 	// }
-	free(map);
-	
+	// free(map);
+
+	// char *blah = "#\n#\n##\n";
+	// ft_putstr(blah);
+	// ft_putchar('\n');
+	// char *blah2 = "##\n #\n #\n";
+	// ft_putstr(blah2);
+	// ft_putchar('\n');
+	// char *blah3 = "  #\n###\n";
+	// ft_putstr(blah3);
+	// ft_putchar('\n');
+	// char *blah4 = "###\n#\n";
+	// ft_putstr(blah4);
+	// ft_putchar('\n');
+	// char *blah5 = "##\n#\n#\n";
+	// ft_putstr(blah5);
+	// ft_putchar('\n');
+	// char *blah6 = "###\n  #\n";
+	// ft_putstr(blah6);
+	// ft_putchar('\n');
+	// char *blah7 = " #\n #\n##\n";
+	// ft_putstr(blah7);
+	// ft_putchar('\n');
+	// char *blah8 = "#\n###\n";
+	// ft_putstr(blah8);
+	// ft_putchar('\n');
+	// char *blah9 = "##\n##\n";
+	// ft_putstr(blah9);
+	// ft_putchar('\n');
+	// char *blah10 = "#\n#\n#\n#\n";
+	// ft_putstr(blah10);
+	// ft_putchar('\n');
+	// char *blah11 = "####\n";
+	// ft_putstr(blah11);
+	// ft_putchar('\n');
+	// char *blah12 = "##\n ##\n";
+	// ft_putstr(blah12);
+	// ft_putchar('\n');
+	// char *blah13 = " #\n##\n#\n";
+	// ft_putstr(blah13);
+	// ft_putchar('\n');
+	// char *blah14 = " ##\n##\n";
+	// ft_putstr(blah14);
+	// ft_putchar('\n');
+	// char *blah15 = "#\n##\n #\n";
+	// ft_putstr(blah15);
+	// ft_putchar('\n');
+	// char *blah16 = " #\n###\n";
+	// ft_putstr(blah16);
+	// ft_putchar('\n');
+	// char *blah17 = "#\n##\n#\n";
+	// ft_putstr(blah17);
+	// ft_putchar('\n');
+	// char *blah18 = "###\n#\n";
+	// ft_putstr(blah18);
+	// ft_putchar('\n');
+	// char *blah19 = " #\n##\n#\n";
+	// ft_putstr(blah19);
+	// ft_putchar('\n');
 	return (0);
 }
 
-	// while (map[i])
-	// {
-		
-	// }
-	// printf("%s\n", map[0]);
-	// printf("%s\n", map[1]);
-	// printf("%s\n", map[2]);
-	// // while (map[i])
-	// // {
-	// // 	printf("%s\n\n", map[i]);
-	// // 	free(*(map + i));
-	// // 	i++;
-	// // }
-	// free(map);
 
