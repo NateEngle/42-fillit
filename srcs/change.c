@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
+
 char 		*ft_change_char(char *tet, char alpha)
 {
 	int		i;
@@ -54,42 +54,36 @@ int		place_tet(char **piece, char **map, int x, int y)
 {
 	int i;
 	int j;
-	// int height;
-	// int width;
 
 	i = 0;
-	while (i < 3)
+	while (piece[i] != '\0')
 	{
 		j = 0;
-		while (j < 3)
+		while (piece[i][j] != '\0')
 		{
-			if (piece[j][i] == '#' && map[y + j][x + i] != '.')
+			if (ft_isupper(piece[j][i]) && map[y + j][x + i] != '.')
 				return (0);
 			j++;
 		}
-		printf("%s\n", "oui");
 		i++;
 	}
-	printf("%s\n", "clap");	
-	convert_tet(piece, &map, x, y, (piece[0][0]));
+	convert_tet(piece, map, x, y, (piece[0][0]));
 	return (1);
 }
 
-void	convert_tet(char **piece, char ***map, int x, int y, char value)
+void	convert_tet(char **piece, char **map, int x, int y, char value)
 {
 	int i;
 	int j;
 
 	i = 0;
-	printf("%s\n", "ja");
-	while (i < 4)
+	while (piece[i] != '\0')
 	{
 		j = 0;
-		while (j < 4)
+		while (piece[i][j] != '\0')
 		{
 			if (ft_isupper(piece[j][i]))
-				map[0][x + j][y + i] = value;
-			printf("%s\n", "ja");
+				map[x + j][y + i] = value;
 			j++;
 		}
 		i++;
