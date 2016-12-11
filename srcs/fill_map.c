@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 char        **fill_blank(int max_num)
 {
@@ -48,9 +47,8 @@ char **solver(char ***group, int count)
 	map = fill_blank(size);
 	while (group[k])
 	{
-		while (!(fill_solve(group, k, map)))
+		while (!(fill_solve(group, k, map, size)))
 		{
-			printf("%s\n", "da");
 			size++;
 			ft_memdel((void **)&map);
 			map = fill_blank(size);
@@ -61,27 +59,34 @@ char **solver(char ***group, int count)
 	return (map);
 }
 
-int		fill_solve(char ***total, int k, char **map)
+int		fill_solve(char ***total, int k, char **map, int size)
 {
 	int i;
 	int j;
+	int c;
+	int d;
 
 	i = 0;
-	printf("%d\n", k);
+	printf("%s\n", total[0][0]);
 	if (total[k] == NULL)
 		return (1);
-	while (i < 4)
+	c = tet_height(total[k]);
+	d = tet_width(total[k]);
+	printf("%d\n", c);
+	printf("%d\n", d);
+	printf("k = %d\n", k);
+	printf("size = %d\n", size);
+	while (i < size - (c = tet_height(total[k])) + 1)
 	{
 		j = 0;
-		while (j < 4)
+		while (j < size - (d = tet_width(total[k])) + 1)
 		{
 			if (place_tet(total[k], map, j, i))
 			{
-				if (fill_solve(total, k + 1, map))
+				if (fill_solve(total, k + 1, map, size))
 					return (1);
 				else
-					convert_tet(total[k], &map, j, i, '.');
-				printf("%s\n", "oui");
+					convert_tet(total[k], map, j, i, '.');
 			}
 			j++;
 		}

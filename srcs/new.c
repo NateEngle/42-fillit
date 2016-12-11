@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 int		block_num(char *holder)
 {

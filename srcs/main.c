@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 char *read_file(char *file)
 {
@@ -72,22 +71,17 @@ int 	main(int ac, char **av)
 	count = block_num(reader);
 	places = split_input(reader, count);
 	ft_memdel((void **)&reader);
-	printf("%d\n", count);
 	char ***y = group_tets(places, count);
 	make_letters(y);
-	printf("%s\n", "yes");
 	map = solver(y, count);
-	printf("%s\n", "yes");
 	int k;
 	k = 0;
-	printf("%s\n", "yes");
 	while (map[k])
 	{
 		ft_putstr(map[k]);
 		ft_putchar('\n');
 		k++;
 	}
-printf("%s\n", "yes");
 	// if (group_tets(places, count) == NULL)
 	// 	ft_error();
 	// size = max_num(holder);

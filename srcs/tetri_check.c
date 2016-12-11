@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 static int	valid_nums(char *map)
 {
@@ -32,7 +31,9 @@ static int	valid_nums(char *map)
 			return (0);
 		i++;
 	}
-	if (pound != 4 || empty != 12)
+	if (pound != 4)
+		return (0);
+	if (empty != 12)
 		return (0);
 	return (1);
 }
@@ -51,27 +52,56 @@ int	check_valid(char **tetriminos)
     return (1);
 }
 
-int tet_width(char *copy)
+int tet_width(char **tet)
 {
 	int i;
+	int j;
 	int hold;
 	int width;
-	char *tet;
 
 	i = 0;
-	hold = 0;
-	tet = copy;
-	while (i < 23)
+	hold = -1;
+	while (tet[i] != '\0')
 	{
+		j = 0;
 		width = 0;
-		while (tet[i] != '\n' && tet[i] != '\0')
+		while (tet[i][j] != '\0')
 		{
-			if (tet[i] == '#')
+			if (ft_isupper(tet[i][j]))
 				width++;
-			i++;
+			j++;
 		}
-		if (width > hold)
+		if (width >= hold)
 			hold = width;
+		i++;
+	}
+	return (hold);
+}
+
+int tet_height(char **tet)
+{
+	int i;
+	int j;
+	int hold;
+	int height;
+
+	i = 0;
+	hold = -1;
+	while (tet[i] != '\0')
+	{
+		j = 0;
+		height = 0;
+		while (tet[i][j] != '\0')
+		{
+			if (ft_isupper(tet[i][j]))
+			{
+				height++;
+				j = 3;
+			}
+			j++;
+		}
+		if (height >= hold)
+			hold = height;
 		i++;
 	}
 	return (hold);
