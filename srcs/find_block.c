@@ -12,9 +12,9 @@
 
 #include "header.h"
 
-static int find_like(char **shapes, int holder)
+static int	find_like(char **shapes, int holder)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (shapes[i] != shapes[holder])
@@ -22,18 +22,17 @@ static int find_like(char **shapes, int holder)
 	return (i);
 }
 
-static int confirm_pound(char *tet, int j)
+static int	confirm_pound(char *tet, int j)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (tet[i] != '#')
 		i++;
 	return (j - i);
-	
 }
 
-static int pound_num(char **shapes, int x, int y, int pound)
+static int	pound_num(char **shapes, int x, int y, int pound)
 {
 	if (shapes[x][y] == '#')
 		return ((pound - 1));
@@ -41,18 +40,18 @@ static int pound_num(char **shapes, int x, int y, int pound)
 		return (4);
 }
 
-int type_block(char *tet, char **shapes) 
+int			type_block(char *tet, char **shapes)
 {
-	int j;
-	int x;
-	int y;
-	int pound;
+	int		j;
+	int		x;
+	int		y;
+	int		pound;
 
 	x = 0;
 	pound = 4;
-    j = 0;
+	j = 0;
 	while (tet[j] && shapes[x] && pound != 0)
-    {
+	{
 		if (tet[j] == '#')
 		{
 			y = confirm_pound(tet, j);
@@ -61,12 +60,10 @@ int type_block(char *tet, char **shapes)
 			{
 				x++;
 				j = -1;
-				y = 0; 
+				y = 0;
 			}
 		}
 		j++;
 	}
-	if (x == 19)
-		return (-1);
-	return (find_like(shapes, x));
+	return (x == 19 ? (-1) : find_like(shapes, x));
 }

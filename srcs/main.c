@@ -12,14 +12,14 @@
 
 #include "header.h"
 
-char *read_file(char *file)
+char		*read_file(char *file)
 {
-	int ret;
-	int fd;
-	char tmp[545];
-	char buf[1];
-	int i;
-	
+	int		ret;
+	int		fd;
+	char	tmp[545];
+	char	buf[1];
+	int		i;
+
 	i = 0;
 	if ((fd = open(file, O_RDONLY)) == -1)
 		ft_putstr("error\n");
@@ -35,39 +35,23 @@ char *read_file(char *file)
 	return (ft_strdup(tmp));
 }
 
-void	ft_error()
+void		ft_error()
 {
-	// int i;
-	// char **tetriminos;
-
-	// while (tetriminos[i])
-	// {
-	// 	if (!check_valid(&tetriminos[i]))
-	// 	{
-			ft_putstr("error\n");
-			exit (0);
-	// 	}
-	// 	i++;
-	// }
-	// return (1);
+	ft_putstr("error\n");
+	exit (0);
 }
 
-int 	main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	char *reader;
-	char **places;
-	int i;
-	int count;
-	char **map;
+	char	*reader;
+	char	**places;
+	int		count;
+	char	**map;
+	// char	***y
 
-
-	i =  0;
 	if (ac != 2)
 		ft_putstr("usage: ./fillit input_file");
 	reader = read_file(av[1]);
-
-	// if (get_coords(reader) == -1)
-	// 	ft_error();
 	count = block_num(reader);
 	places = split_input(reader, count);
 	ft_memdel((void **)&reader);
@@ -82,26 +66,5 @@ int 	main(int ac, char **av)
 		ft_putchar('\n');
 		k++;
 	}
-	// if (group_tets(places, count) == NULL)
-	// 	ft_error();
-	// size = max_num(holder);
-	
-	// while (places[i])
-	// {
-	// 	printf("%s\n", places[i]);
-	// 	i++;
-	// }
-
-	// map = make_letters(map);
-
-
-	// while (holder[i])
-	// {
-	//   	ft_putstr(holder[i]);
-	//   	i++;
-	// }
-	// free(map);
 	return (0);
 }
-
-

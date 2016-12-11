@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-char 		*ft_change_char(char *tet, char alpha)
+char		*ft_change_char(char *tet, char alpha)
 {
 	int		i;
 
@@ -26,12 +26,12 @@ char 		*ft_change_char(char *tet, char alpha)
 	return (tet);
 }
 
-char	***make_letters(char ***tet)
+char		***make_letters(char ***tet)
 {
 	char	alpha;
 	char	***cpy;
 	int		i;
-	int 	j;
+	int		j;
 
 	i = 0;
 	alpha = 'A';
@@ -39,7 +39,7 @@ char	***make_letters(char ***tet)
 	while (cpy[i])
 	{
 		j = 0;
-		while(cpy[i][j])
+		while (cpy[i][j])
 		{
 			cpy[i][j] = ft_change_char(cpy[i][j], alpha);
 			j++;
@@ -50,16 +50,18 @@ char	***make_letters(char ***tet)
 	return (cpy);
 }
 
-int		place_tet(char **piece, char **map, int x, int y)
+int			place_tet(char **piece, char **map, int x, int y)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	int		z;
 
 	i = 0;
-	while (piece[i] != '\0')
+	z = 0;
+	while (i < tet_width(piece))
 	{
 		j = 0;
-		while (piece[i][j] != '\0')
+		while (j < tet_height(piece))
 		{
 			if (ft_isupper(piece[j][i]) && map[y + j][x + i] != '.')
 				return (0);
@@ -67,23 +69,48 @@ int		place_tet(char **piece, char **map, int x, int y)
 		}
 		i++;
 	}
-	convert_tet(piece, map, x, y, (piece[0][0]));
+	convert_tet(piece, map, x, y);
 	return (1);
 }
 
-void	convert_tet(char **piece, char **map, int x, int y, char value)
+void		convert_tet(char **piece, char **map, int x, int y)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	int		z;
+	char	value;
 
 	i = 0;
-	while (piece[i] != '\0')
+	z = 0;
+	while (!(ft_isupper(piece[0][z])))
+		z++;
+	value = piece[0][z];
+	while (i < tet_width(piece))
 	{
 		j = 0;
-		while (piece[i][j] != '\0')
+		while (j < tet_height(piece))
 		{
 			if (ft_isupper(piece[j][i]))
-				map[x + j][y + i] = value;
+				map[y + j][x + i] = value;
+			j++;
+		}
+		i++;
+	}
+}
+
+void		convert_to_dot(char **piece, char **map, int x, int y)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < tet_width(piece))
+	{
+		j = 0;
+		while (j < tet_height(piece))
+		{
+			if (ft_isupper(piece[j][i]))
+				map[y + j][x + i] = '.';
 			j++;
 		}
 		i++;
