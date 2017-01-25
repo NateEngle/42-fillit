@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
-char		**fill_blank(int max_num)
+char		**make_map(int max_num)
 {
 	int		x;
 	int		y;
@@ -44,18 +44,18 @@ char		**solver(char ***group, int count)
 
 	k = -1;
 	size = max_num(count);
-	map = fill_blank(size);
-	while (!(fill_solve(group, ++k, map, size)))
+	map = make_map(size);
+	while (!(fillit_solve(group, ++k, map, size)))
 	{
 		size++;
-		ft_memdel((void **)&map);
-		map = fill_blank(size);
+		delete_map(map);
+		map = make_map(size);
 		k = -1;
 	}
 	return (map);
 }
 
-int			fill_solve(char ***total, int k, char **map, int size)
+int			fillit_solve(char ***total, int k, char **map, int size)
 {
 	int		i;
 	int		j;
@@ -72,7 +72,7 @@ int			fill_solve(char ***total, int k, char **map, int size)
 		{
 			if (place_tet(total[k], map, j, i))
 			{
-				if (fill_solve(total, k + 1, map, size))
+				if (fillit_solve(total, k + 1, map, size))
 					return (1);
 				else
 					convert_to_dot(total[k], map, j, i);
@@ -82,15 +82,4 @@ int			fill_solve(char ***total, int k, char **map, int size)
 		i++;
 	}
 	return (0);
-}
-
-int			max_num(int size)
-{
-	int		i;
-
-	i = 2;
-	size = size * 4;
-	while (i * i < size)
-		i++;
-	return (i);
 }

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
-static int	find_like(char **shapes, int holder)
+int			find_like(char **shapes, int holder)
 {
 	int		i;
 
@@ -22,7 +22,7 @@ static int	find_like(char **shapes, int holder)
 	return (i);
 }
 
-static int	confirm_pound(char *tet, int j)
+int			confirm_pound(char *tet, int j)
 {
 	int		i;
 
@@ -32,7 +32,7 @@ static int	confirm_pound(char *tet, int j)
 	return (j - i);
 }
 
-static int	pound_num(char **shapes, int x, int y, int pound)
+int			pound_num(char **shapes, int x, int y, int pound)
 {
 	if (shapes[x][y] == '#')
 		return ((pound - 1));
@@ -66,4 +66,22 @@ int			type_block(char *tet, char **shapes)
 		j++;
 	}
 	return (x == 19 ? (-1) : find_like(shapes, x));
+}
+
+int			block_num(char *holder)
+{
+	int		x;
+	int		count;
+
+	x = 0;
+	count = 0;
+	while (holder[x])
+	{
+		if ((holder[x] == '\n' && holder[x + 1] == '\n'))
+			count++;
+		x++;
+	}
+	if (holder[x] == '\0')
+		count++;
+	return (count);
 }

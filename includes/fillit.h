@@ -1,62 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nengle- <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/03 19:44:25 by nengle-           #+#    #+#             */
-/*   Updated: 2016/12/03 19:44:26 by nengle-          ###   ########.fr       */
+/*   Created: 2016/10/23 23:03:10 by nengle-           #+#    #+#             */
+/*   Updated: 2016/12/11 20:53:53 by nengle-          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include <string.h>
-# include <stdlib.h>
-# include "../libft/libft.h"
-# include <fcntl.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
 
-typedef struct	s_map
-{
-	int			size;
-	char		**str;
-}				t_map;
-
-typedef struct	s_piece
-{
-	char		**place;
-	int			width;
-	int			height;
-	char		value;
-}				t_piece;
-
-typedef struct 	s_coord
-{
-	int			x;
-	int			y;
-}				t_coord;
-
-t_coord		*new_coord(int x, int y);
-t_piece		*new_piece(char **place, int width, int height, char value);
-void		delete_piece(t_piece  *piece);
-t_list		*delete_list(t_list *list);
-t_list		*read_funct(int fd);
-int			valid_tet(char *buf, int cnt);
-int			tet_touch(char	*buf);
-char		*reading(char *file);
-int			cnt_check(char *str);
-t_piece		*get_piece(char *buf, char value);
-void		max_coord(char *str, t_coord *min, t_coord *max);
-void		delete_map(t_map *map);
-void		print_map(t_map *map);
-void		piece_converter(t_piece *piece, t_map *map, t_coord *coord, char value);
-int			put_piece(t_piece *piece, t_map *map, int x, int y);
-t_map		*map_creator(int size);
-t_map		*solver(t_list *list);
-int			fillit_solver(t_list *list, t_map *map);
-int			approx_sqrt(int n);
+int		valid_nums(char *map);
+char	***make_letters(char ***tet);
+char	*ft_change_pound(char *tet, char alpha);
+char	*read_file(char *file);
+int		check_valid(char **str);
+int		find_like(char **shapes, int holder);
+int		confirm_pound(char *tet, int j);
+int		pound_num(char **shapes, int x, int y, int pound);
+int		type_block(char *tet, char **shapes);
+char	**split_input(char *buf, int count);
+int		max_num(int size);
+char	**make_map(int max_num);
+char	**grab_tetri(char **str);
+char	*printables(int enums);
+char	**get_dblchar(char *split);
+int		**coordinates(int enums);
+int		block_num(char *holder);
+char	***group_tets(char **tet, int count);
+int		place_tet(char **piece, char **map, int x, int y);
+void	convert_tet(char **piece, char **map, int x, int y);
+char	**solver(char ***group, int count);
+int		fillit_solve(char ***total, int k, char **map, int size);
+int		tet_width(char **tet);
+int		get_height(int k);
+int		get_width(int k);
+int		tet_height(char **tet);
+char	*get_places(int k);
+void	convert_to_dot(char **piece, char **map, int x, int y);
+void	delete_map(char **map);
+void	print_map(char **map);
+int		cnt_check(char *str);
 
 #endif

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
 char		*read_file(char *file)
 {
@@ -35,36 +35,31 @@ char		*read_file(char *file)
 	return (ft_strdup(tmp));
 }
 
-void		ft_error()
-{
-	ft_putstr("error\n");
-	exit (0);
-}
-
 int			main(int ac, char **av)
 {
 	char	*reader;
 	char	**places;
 	int		count;
 	char	**map;
-	// char	***y
+	char	***y;
 
 	if (ac != 2)
+	{
 		ft_putstr("usage: ./fillit input_file");
+		return (1);
+	}
 	reader = read_file(av[1]);
 	count = block_num(reader);
-	places = split_input(reader, count);
-	ft_memdel((void **)&reader);
-	char ***y = group_tets(places, count);
+	if (!cnt_check(reader) || (places = split_input(reader, count)) == NULL
+		|| !check_valid(places))
+	{
+		ft_putstr("error\n");
+		return (1);
+	}
+	y = group_tets(places, count);
 	make_letters(y);
 	map = solver(y, count);
-	int k;
-	k = 0;
-	while (map[k])
-	{
-		ft_putstr(map[k]);
-		ft_putchar('\n');
-		k++;
-	}
+	print_map(map);
+	delete_map(map);
 	return (0);
 }

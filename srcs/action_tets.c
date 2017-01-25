@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
 char		*ft_change_char(char *tet, char alpha)
 {

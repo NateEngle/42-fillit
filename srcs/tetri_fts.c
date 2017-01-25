@@ -10,7 +10,57 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
+
+int			tet_width(char **tet)
+{
+	int		i;
+	int		j;
+	int		hold;
+	int		width;
+
+	i = 0;
+	hold = 0;
+	while (tet[i] != '\0')
+	{
+		j = 0;
+		width = 0;
+		while (tet[i][j] != '\0')
+		{
+			if (ft_isupper(tet[i][j]) || tet[i][j] == '.')
+				width++;
+			j++;
+		}
+		if (width > hold)
+			hold = width;
+		i++;
+	}
+	return (hold);
+}
+
+int			tet_height(char **tet)
+{
+	int		i;
+	int		j;
+	int		height;
+	int		check;
+
+	i = 0;
+	height = 0;
+	while (tet[i] != '\0')
+	{
+		j = 0;
+		check = height;
+		while (tet[i][j] != '\0' && check == height)
+		{
+			if (ft_isupper(tet[i][j]))
+				height++;
+			j++;
+		}
+		i++;
+	}
+	return (height);
+}
 
 int			get_width(int k)
 {

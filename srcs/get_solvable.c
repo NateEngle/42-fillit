@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
 char		**get_charstr(char *buf, int width, int height)
 {
@@ -68,7 +68,7 @@ char		***group_tets(char **tet, int count)
 	char	***group;
 
 	i = 0;
-	j = 0; 
+	j = 0;
 	group = (char ***)ft_memalloc(sizeof(char **) * (count + 1));
 	while (i < count)
 	{

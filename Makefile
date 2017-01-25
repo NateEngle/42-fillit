@@ -15,10 +15,10 @@ DELETE = $(OBJ)
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-INC_NAME = header.h
+INC_NAME = fillit.h
 
-SRC_NAME = main.c change.c tetri_check.c new.c find_block.c fill_map.c \
-		   get_solvable.c
+SRC_NAME = main.c action_tets.c tetri_check.c find_block.c fill_map.c \
+		   get_solvable.c map_fts.c tetri_fts.c
 
 all: $(NAME)
 

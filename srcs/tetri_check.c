@@ -10,17 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
-int		valid_nums(char *map)
+int			cnt_check(char *new)
 {
-	int i;
-	int pound;
-	int empty;
+	int		dot;
+	int		pound;
+	int		newline;
+
+	dot = 0;
+	newline = 0;
+	pound = 0;
+	while (*new)
+	{
+		if (*new == '.')
+			dot++;
+		else if (*new == '#')
+			pound++;
+		else if (*new == '\n')
+			newline++;
+		else
+			return (0);
+		new++;
+	}
+	if ((dot % 4 != 0) || (pound % 4 != 0) || (((newline + 1) % 5) != 0))
+		return (0);
+	return (1);
+}
+
+int			valid_nums(char *map)
+{
+	int		i;
+	int		pound;
+	int		empty;
+	int		newline;
 
 	i = 0;
 	pound = 0;
 	empty = 0;
+	newline = 0;
 	while (map[i])
 	{
 		if (map[i] == '#')
@@ -32,70 +60,45 @@ int		valid_nums(char *map)
 		i++;
 	}
 	if (pound != 4 || empty != 12)
-		return (0);;
+		return (0);
 	return (1);
 }
 
-int		check_valid(char **tetriminos)
+int			touching_tets(char *tet)
 {
-	int i;
+	int		i;
+	int		count;
 
 	i = 0;
-	while (tetriminos[i] != '\0')
+	count = 0;
+	while (i < 20)
 	{
-		if (!(valid_nums(tetriminos[i])))
+		if (tet[i] == '#')
+		{
+			if ((i - 1) >= 0 && tet[i - 1] == '#')
+				count++;
+			if ((i - 5) >= 0 && tet[i - 5] == '#')
+				count++;
+			if ((i + 1) < 19 && tet[i + 1] == '#')
+				count++;
+			if ((i + 5) < 19 && tet[i + 5] == '#')
+				count++;
+		}
+		i++;
+	}
+	return (count == 6 || count == 8);
+}
+
+int			check_valid(char **tets)
+{
+	int		i;
+
+	i = 0;
+	while (tets[i] != '\0')
+	{
+		if (!valid_nums(tets[i]) || !touching_tets(tets[i]))
 			return (0);
 		i++;
 	}
 	return (1);
-}
-
-int		tet_width(char **tet)
-{
-	int i;
-	int j;
-	int hold;
-	int width;
-
-	i = 0;
-	hold = 0;
-	while (tet[i] != '\0')
-	{
-		j = 0;
-		width = 0;
-		while (tet[i][j] != '\0')
-		{
-			if (ft_isupper(tet[i][j]) || tet[i][j] == '.')
-				width++;
-			j++;
-		}
-		if (width > hold)
-			hold = width;
-		i++;
-	}
-	return (hold);
-}
-
-int		tet_height(char **tet)
-{
-	int i;
-	int j;
-	int height;
-	int check;
-
-	i = 0;
-	height = 0;
-	while (tet[i] != '\0')
-	{
-		j = 0;
-		check = height;
-		while (tet[i][j] != '\0' && check == height)
-		{
-			if (ft_isupper(tet[i][j]))
-				height++;
-			j++;
-		}
-		i++;
-	}
-	return (height);
 }

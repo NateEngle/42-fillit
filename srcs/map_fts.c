@@ -10,27 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "fillit.h"
 
-int			block_num(char *holder)
-{
-	int		x;
-	int		count;
-
-	x = 0;
-	count = 0;
-	while (holder[x])
-	{
-		if ((holder[x] == '\n' && holder[x + 1] == '\n'))
-			count++;
-		x++;
-	}
-	if (holder[x] == '\0')
-		count++;
-	return (count);
-}
-
-char		**split_input(char *map, int count)
+char		**split_input(char *buf, int count)
 {
 	char	*holder;
 	char	**output;
@@ -39,16 +21,58 @@ char		**split_input(char *map, int count)
 
 	i = 0;
 	itero = 0;
-	holder = map;
+	holder = buf;
 	if (!(output = (char **)malloc(sizeof(char *) * (count + 1))))
 		return (0);
 	while (count > 0)
 	{
-		output[itero] = ft_strsub(holder, i, 20);
+		if (!(output[itero] = ft_strsub(holder, i, 20)))
+		{
+			delete_map(output);
+			return (NULL);
+		}
 		itero++;
 		count--;
 		i = i + 21;
 	}
 	output[itero] = NULL;
+	ft_memdel((void **)&buf);
 	return (output);
+}
+
+void		print_map(char **map)
+{
+	int		i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_putstr(map[i]);
+		ft_putchar('\n');
+		i++;
+	}
+}
+
+void		delete_map(char **map)
+{
+	int		i;
+
+	i = 0;
+	while (map[i])
+	{
+		ft_memdel((void **)&map[i]);
+		i++;
+	}
+	ft_memdel((void **)&map);
+}
+
+int			max_num(int size)
+{
+	int		i;
+
+	i = 2;
+	size = size * 4;
+	while (i * i < size)
+		i++;
+	return (i);
 }
